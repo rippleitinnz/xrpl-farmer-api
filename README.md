@@ -26,3 +26,16 @@ curl --location --request GET 'https://farmerapi.rippleitin.nz/verify?xrpl_addre
     "lookupDurationSeconds": 0.47
 }
 ```
+
+## **Error Messages**
+
+**401 (Bad Request)**
+
+- If the `xrpl_address` is missing you will get the following error message:
+**"Missing required query parameter [xrpl_address] to use this endpoint."**
+
+- If the `xrpl_address` is not a valid XRPL classic address you will get error with the following message: 
+**"The XRPL address provided is not a valid classic address. Please check the address and try again."**
+
+
+
