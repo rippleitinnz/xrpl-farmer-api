@@ -80,15 +80,48 @@ app.get("/verify", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(500).send(`Problem querying ${process.env.MSSQL_DATABASE} database!`);
     }
 }));
+app.post("/verify-bulk", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.body.xrpl_addresses) {
+        return res.status(401).send('Missing required [xrpl_addresses] property from payload body.');
+    }
+    if (!Array.isArray(req.body.xrpl_addresses)) {
+        return res.status(401).send('The [xrpl_addresses] property must be be of type array filled with XRPL addresses as strings.');
+    }
+    try {
+        const startTime = process.uptime();
+        const sqlRequest = new mssql_1.default.Request();
+        const sqlResult = yield sqlRequest.query(`
+            SELECT 
+                *
+            FROM 
+                ${process.env.MSSQL_TABLE} 
+            WHERE 
+                xrpl_address 
+            IN 
+                (${req.body.xrpl_addresses.map((address) => `'${address}'`).join(',')})
+        `);
+        const xrplAddressesCleaned = req.body.xrpl_addresses.filter((address) => !sqlResult.recordset.find((record) => record.xrpl_address === address));
+        const xrplAddressesFarmers = sqlResult.recordset.map((record) => record.xrpl_address);
+        const endTime = process.uptime();
+        return res.json({
+            xrplAddressesCleaned,
+            xrplAddressesFarmers,
+            totalRemoved: req.body.xrpl_addresses.length - xrplAddressesCleaned.length,
+            lookupDurationSeconds: Number((endTime - startTime).toFixed(2))
+        });
+    }
+    catch (err) {
+        res.status(500).send(`Problem querying ${process.env.MSSQL_DATABASE} database!`);
+    }
+}));
 const PORT = process.env.PORT || 3000;
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield mssql_1.default.connect(sqlConfig);
         app.listen(PORT, () => {
-            console.log(`\n rippleitin.nz Farmer API \n`);
+            console.log(`\n rippleitin.nz XRPL Farmer API \n`);
             console.log(`  Server running at:\n`);
             console.log(`  - Local:    ${ansi_colors_1.default.cyan(`http://localhost:${ansi_colors_1.default.bold(PORT)}`)}`);
-            console.log(`  - Network:  ${ansi_colors_1.default.cyan('https://farmerapi.rippleitin.nz')}`);
         });
     }
     catch (err) {
