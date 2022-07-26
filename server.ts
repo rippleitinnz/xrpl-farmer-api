@@ -29,10 +29,10 @@ const sqlConfig: sql.config = {
 };
 
 const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 
 const app: Express = express();
@@ -115,7 +115,7 @@ app.post("/verify-bulk", async (req: Request, res: Response) => {
             xrplAddressesCleaned,
             xrplAddressesFarmers,
             totalFarmersFound: xrplAddressesFarmers.length,
-            lookupDurationSeconds: Number((endTime - startTime).toFixed(2)) 
+            lookupDurationSeconds: Number((endTime - startTime).toFixed(2))
         })
     } catch (err: any) {
         res.status(500).send(`Problem querying ${process.env.MSSQL_DATABASE} database!`)
