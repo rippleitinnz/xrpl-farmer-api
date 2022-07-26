@@ -109,7 +109,7 @@ app.post("/verify-bulk", (req, res) => __awaiter(void 0, void 0, void 0, functio
         return res.json({
             xrplAddressesCleaned,
             xrplAddressesFarmers,
-            totalRemoved: req.body.xrpl_addresses.length - xrplAddressesCleaned.length,
+            totalFarmersFound: xrplAddressesFarmers.length,
             lookupDurationSeconds: Number((endTime - startTime).toFixed(2))
         });
     }

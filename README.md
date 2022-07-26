@@ -28,7 +28,6 @@ curl --location --request POST 'http://farmerapi.rippleitin.nz:3000/verify-bulk'
     ]
 }'
 ```
-
 ## **JSON Response (Example):**
 
 ```JSON
@@ -40,10 +39,16 @@ curl --location --request POST 'http://farmerapi.rippleitin.nz:3000/verify-bulk'
         "r14zaSurzKZmPvi6GvonCaz3mc7ztVckf",
         "r166jkLzedGTtTpRGeqrXF4pPipaTkEAJ"
     ],
-    "totalRemoved": 2,
+    "totalFarmersFound": 2,
     "lookupDurationSeconds": 0.47
 }
 ```
+
+- `xrplAddressesCleaned` - The XRPL addresses provided in the request that did not get flagged as farmers. These appear to be valid addresses.
+
+- `xrplAddressesFarmers` - The XRPL addresses provided in the request that are flagged as farmers. These appear to be farmer addresses.
+
+- `totalFarmersFound` - The total amount of XRPL addresses provided in the request that appear to be farmers.
 
 ## **Error Messages**
 

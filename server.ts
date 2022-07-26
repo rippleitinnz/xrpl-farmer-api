@@ -105,7 +105,7 @@ app.post("/verify-bulk", async (req: Request, res: Response) => {
         return res.json({
             xrplAddressesCleaned,
             xrplAddressesFarmers,
-            totalRemoved: req.body.xrpl_addresses.length - xrplAddressesCleaned.length,
+            totalFarmersFound: xrplAddressesFarmers.length,
             lookupDurationSeconds: Number((endTime - startTime).toFixed(2)) 
         })
     } catch (err: any) {
