@@ -83,6 +83,9 @@ app.post("/verify-bulk", async (req: Request, res: Response) => {
     if (!Array.isArray(req.body.xrpl_addresses)) {
         return res.status(401).send('The [xrpl_addresses] property must be be of type array filled with XRPL addresses as strings.');
     }
+    if (!req.body.xrpl_addresses.length) {
+        return res.status(401).send('The [xrpl_addresses] property must contain minimum of 1 XRPL address string.');
+    }
     try {
         const startTime = process.uptime();
         const sqlRequest = new sql.Request();
@@ -103,7 +106,7 @@ app.post("/verify-bulk", async (req: Request, res: Response) => {
             xrplAddressesCleaned,
             xrplAddressesFarmers,
             totalRemoved: req.body.xrpl_addresses.length - xrplAddressesCleaned.length,
-            lookupDurationSeconds: Number((endTime - startTime).toFixed(2))
+            lookupDurationSeconds: Number((endTime - startTime).toFixed(2)) 
         })
     } catch (err: any) {
         res.status(500).send(`Problem querying ${process.env.MSSQL_DATABASE} database!`)

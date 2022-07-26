@@ -87,6 +87,9 @@ app.post("/verify-bulk", (req, res) => __awaiter(void 0, void 0, void 0, functio
     if (!Array.isArray(req.body.xrpl_addresses)) {
         return res.status(401).send('The [xrpl_addresses] property must be be of type array filled with XRPL addresses as strings.');
     }
+    if (!req.body.xrpl_addresses.length) {
+        return res.status(401).send('The [xrpl_addresses] property must contain minimum of 1 XRPL address string.');
+    }
     try {
         const startTime = process.uptime();
         const sqlRequest = new mssql_1.default.Request();
