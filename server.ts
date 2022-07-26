@@ -7,6 +7,7 @@ import cors from 'cors';
 import color from 'ansi-colors';
 import sql from 'mssql';
 import { isValidClassicAddress } from 'xrpl';
+import { TFarmerRecord } from './types'
 
 dotenv.config();
 
@@ -57,7 +58,7 @@ app.get("/verify", async (req: Request, res: Response) => {
     try {
         const startTime = process.uptime();
         const sqlRequest = new sql.Request();
-        const sqlResult = await sqlRequest.query(`
+        const sqlResult: sql.IResult<TFarmerRecord> = await sqlRequest.query(`
             SELECT 
                 * 
             FROM 
