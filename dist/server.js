@@ -19,6 +19,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 const ansi_colors_1 = __importDefault(require("ansi-colors"));
 const mssql_1 = __importDefault(require("mssql"));
+const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const xrpl_1 = require("xrpl");
 dotenv_1.default.config();
 const sqlConfig = {
@@ -36,6 +37,12 @@ const sqlConfig = {
         trustServerCertificate: true
     }
 };
+const limiter = (0, express_rate_limit_1.default)({
+    windowMs: 15 * 60 * 1000,
+    max: 10,
+    standardHeaders: true,
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
 const app = (0, express_1.default)();
 const handleError = (middleware, req, res, next) => {
     middleware(req, res, (err) => {
@@ -44,6 +51,7 @@ const handleError = (middleware, req, res, next) => {
         next();
     });
 };
+app.use(limiter);
 app.use((0, morgan_1.default)('combined'));
 app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)());

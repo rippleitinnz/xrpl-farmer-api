@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import color from 'ansi-colors';
 import sql from 'mssql';
+import rateLimit from 'express-rate-limit'
 import { isValidClassicAddress } from 'xrpl';
 import { TFarmerRecord } from './types'
 
@@ -27,6 +28,13 @@ const sqlConfig: sql.config = {
     }
 };
 
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	max: 10, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
+
 const app: Express = express();
 
 const handleError = (middleware: NextHandleFunction, req: Request, res: Response, next: NextFunction) => {
@@ -36,6 +44,7 @@ const handleError = (middleware: NextHandleFunction, req: Request, res: Response
     });
 };
 
+app.use(limiter)
 app.use(morgan('combined'))
 app.use(helmet());
 app.use(cors());

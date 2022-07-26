@@ -3,7 +3,7 @@
 
 ## 👋 Welcome!
 
-> This is a public API hosted by [rippleitin.nz](https://rippleitin.nz). The database for this API is updated frequently with most current list of [XRPL](https://xrpl.org) addresses that have been flagged as farmers.
+> This is a public API hosted by [rippleitin.nz](https://rippleitin.nz). The database for this API is updated frequently with most current list of [XRPL](https://xrpl.org) addresses that have been flagged as farmers. You can make maximum of **100 REQUESTS PER 15 MINUTE WINDOW**. If you exceed the request limit, the API will respond with `429 Too many requests, please try again later`. If you need to process large set of XRPL addresses we advise you to use the `POST /verify-bulk` endpoint. If you need to only verify single XRPL address you can use the `GET /verify` endpoint.
 
 ## **Base URL:**
 - http://farmerapi.rippleitin.nz:3000
