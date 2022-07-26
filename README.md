@@ -3,7 +3,19 @@
 
 ## 👋 Welcome!
 
-> This is a public API hosted by [rippleitin.nz](https://rippleitin.nz). The database for this API is updated frequently with most current list of [XRPL](https://xrpl.org) addresses that have been flagged as farmers. You can make maximum of **100 REQUESTS PER 15 MINUTE WINDOW**. If you exceed the request limit, the API will respond with `429 Too many requests, please try again later`. If you need to process large set of XRPL addresses we advise you to use the `POST /verify-bulk` endpoint. If you need to only verify single XRPL address you can use the `GET /verify` endpoint.
+> This is a public API hosted by [rippleitin.nz](https://rippleitin.nz). The database for this API is updated frequently with most current list of [XRPL](https://xrpl.org) addresses that have been flagged as farmers. 
+
+## **API Rate Limiting**
+
+You can make maximum of **100 REQUESTS PER 15 MINUTE WINDOW**. If you exceed the request limit, the API will respond with `429 Too many requests, please try again later`. If you need to process large set of XRPL addresses we advise you to use the `POST /verify-bulk` endpoint. If you need to only verify single XRPL address you can use the `GET /verify` endpoint.
+
+Each request will return the following headers:
+
+- `RateLimit-Limit` - This value will always show `100`. The value is related to the max number of requests you can make within the 15 minute window.
+
+- `RateLimit-Remaining` - How many requests remaining until you have hit the rate limit. 
+
+- `RateLimit-Reset` - The number of seconds remaining in the current 15 minute window before the rate limit is reset.
 
 ## **Base URL:**
 - http://farmerapi.rippleitin.nz:3000
