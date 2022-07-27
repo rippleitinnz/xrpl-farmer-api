@@ -3,7 +3,7 @@
 
 ## 👋 Welcome!
 
-> This is a public API hosted by [rippleitin.nz](https://rippleitin.nz). The database for this API is updated frequently with most current list of [XRPL](https://xrpl.org) addresses that have been flagged as Air Drop farmers, from numerous sources. 
+> This is a public API hosted by [rippleitin.nz](https://rippleitin.nz). The database for this API is updated frequently with the most current list of [XRPL](https://xrpl.org) addresses that have been flagged as Air Drop farmers, from numerous sources. 
 
 ## **API Rate Limiting**
 
