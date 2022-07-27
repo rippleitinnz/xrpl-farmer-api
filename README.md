@@ -7,6 +7,14 @@
 
 The last update was on July 26th 2022 with 138,828 individual accounts featuring on the list.
 
+## **Monitoring**
+
+An API status page has been established for the purposes of monitoring
+
+[Status Monitor](https://stats.uptimerobot.com/By15MTDWMn)
+
+
+
 ## **API Rate Limiting**
 
 You can make a maximum of **100 REQUESTS PER 15 MINUTE WINDOW**. If you exceed the request limit, the API will respond with `429 Too many requests, please try again later`. If you need to process large sets of XRPL addresses we advise you to use the `POST /verify-bulk` endpoint. If you only need to verify a single XRPL address you should use the `GET /verify` endpoint.
@@ -105,11 +113,5 @@ curl --location --request GET 'https://farmerapi.rippleitin.nz/verify?xrpl_addre
 
 - If the `xrpl_address` is not a valid XRPL classic address you will get the following error message: 
 **"The XRPL address provided is not a valid classic address. Please check the address and try again."**
-
-## **Monitoring**
-
-An API status page has been established for the purposes of monitoring
-
-[Status Monitor](https://stats.uptimerobot.com/By15MTDWMn)
 
 
