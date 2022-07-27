@@ -106,7 +106,7 @@ curl --location --request GET 'https://farmerapi.rippleitin.nz/verify?xrpl_addre
 - If the `xrpl_address` is not a valid XRPL classic address you will get the following error message: 
 **"The XRPL address provided is not a valid classic address. Please check the address and try again."**
 
-**Monitoring**
+## **Monitoring**
 
 An API status page has been established for the purposes of monitoring
 
