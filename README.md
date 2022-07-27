@@ -18,7 +18,7 @@ Each request will return the following headers:
 - `RateLimit-Reset` - The number of seconds remaining in the current 15 minute window before the rate limit is reset.
 
 ## **Base URL:**
-- http://farmerapi.rippleitin.nz:3000
+- https://farmerapi.rippleitin.nz
 ---
 ## **Endpoint:** 
 **`POST`** 
@@ -30,7 +30,7 @@ Each request will return the following headers:
 ## **cURL Request (Example):**
 
 ```bash
-curl --location --request POST 'http://farmerapi.rippleitin.nz:3000/verify-bulk' \
+curl --location --request POST 'https://farmerapi.rippleitin.nz/verify-bulk' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "xrpl_addresses": [
@@ -82,7 +82,7 @@ curl --location --request POST 'http://farmerapi.rippleitin.nz:3000/verify-bulk'
 ## **cURL Request (Example):**
 
 ```bash
-curl --location --request GET 'http://farmerapi.rippleitin.nz:3000/verify?xrpl_address=r36PzVWGbVaUvLaqej22BFEHi4m37ufBte'
+curl --location --request GET 'https://farmerapi.rippleitin.nz/verify?xrpl_address=r36PzVWGbVaUvLaqej22BFEHi4m37ufBte'
 ```
 
 ## **JSON Response (Example):**
