@@ -1,7 +1,7 @@
 <img src="https://i.imgur.com/JwUGvaT.jpg" width="100px"/><br>
 # **rippleitin.nz XRPL Air Drop Farmer API**
 
-## 👋 Welcome!
+## 👋 Welcome! 
 
 > This is a public API hosted by [rippleitin.nz](https://rippleitin.nz). The database for this API is updated frequently with the most current list of [XRPL](https://xrpl.org) addresses that have been flagged as Air Drop farmers, from numerous sources.
 
@@ -103,7 +103,7 @@ curl --location --request GET 'https://farmerapi.rippleitin.nz/verify?xrpl_addre
 - If the `xrpl_address` is missing you will get the following error message:
 **"Missing required query parameter [xrpl_address] to use this endpoint."**
 
-- If the `xrpl_address` is not a valid XRPL classic address you will get error with the following message: 
+- If the `xrpl_address` is not a valid XRPL classic address you will get the following error message: 
 **"The XRPL address provided is not a valid classic address. Please check the address and try again."**
 
 
