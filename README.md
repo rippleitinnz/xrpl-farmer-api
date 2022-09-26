@@ -5,7 +5,7 @@
 
 > This is a public API hosted by [rippleitin.nz](https://rippleitin.nz). The database for this API is updated frequently with the most current list of [XRPL](https://xrpl.org) addresses that have been flagged as Air Drop farmers, from numerous sources.
 
-The last update was on July 26th 2022 with 138,828 individual accounts featuring on the list.
+The last update was on Septmeber 26th 2022 with 142,827 individual accounts featuring on the list.
 
 ## **Monitoring**
 
